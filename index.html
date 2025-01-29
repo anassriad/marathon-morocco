@@ -4,43 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marathon To-Do List</title>
-    <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin: auto;
+        }
+        h2 {
+            text-align: center;
+        }
+        .marathon {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #fff;
+            border-left: 5px solid #3498db;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+        }
+        .marathon a {
+            text-decoration: none;
+            color: #3498db;
+        }
+        .checkbox {
+            margin-right: 10px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <h2>🏃‍♂️ My Marathon To-Do List 🏃‍♀️</h2>
         
         <div class="marathon">
-            <input type="checkbox" class="checkbox" id="fez-marathon">
-            <label for="fez-marathon"><strong>Fez Spiritual Marathon</strong> - <a href="https://www.visitmorocco.com/en/travel/fez">Location</a></label>
+            <input type="checkbox" class="checkbox" onclick="checkMarathon(1)">
+            <strong>Fez Spiritual Marathon</strong> - <a href="https://www.visitmorocco.com/en/travel/fez">Location</a>
             <p>📅 Date: February 16, 2025</p>
             <p>🔹 Training: Hill workouts, tempo runs, dynamic stretching</p>
         </div>
         
         <div class="marathon">
-            <input type="checkbox" class="checkbox" id="rabat-marathon">
-            <label for="rabat-marathon"><strong>Marathon International de Rabat</strong> - <a href="https://www.visitmorocco.com/en/travel/rabat">Location</a></label>
+            <input type="checkbox" class="checkbox" onclick="checkMarathon(2)">
+            <strong>Marathon International de Rabat</strong> - <a href="https://www.visitmorocco.com/en/travel/rabat">Location</a>
             <p>📅 Date: April 27, 2025</p>
             <p>🔹 Training: Long runs, interval training, strength workouts</p>
         </div>
         
         <div class="marathon">
-            <input type="checkbox" class="checkbox" id="casablanca-marathon">
-            <label for="casablanca-marathon"><strong>Marathon International de Casablanca</strong> - <a href="https://www.visitmorocco.com/en/travel/casablanca">Location</a></label>
+            <input type="checkbox" class="checkbox" onclick="checkMarathon(3)">
+            <strong>Marathon International de Casablanca</strong> - <a href="https://www.visitmorocco.com/en/travel/casablanca">Location</a>
             <p>📅 Date: October 26, 2025</p>
             <p>🔹 Training: Fartlek runs, cross-training, plyometric drills</p>
         </div>
         
         <div class="marathon">
-            <input type="checkbox" class="checkbox" id="sables-marathon">
-            <label for="sables-marathon"><strong>Marathon des Sables</strong> - <a href="https://www.visitmorocco.com/en/travel/sahara-desert">Location</a></label>
+            <input type="checkbox" class="checkbox" onclick="checkMarathon(4)">
+            <strong>Marathon des Sables</strong> - <a href="https://www.visitmorocco.com/en/travel/sahara-desert">Location</a>
             <p>📅 Date: April 2025 (TBD)</p>
             <p>🔹 Training: Sand running, heat acclimation, back-to-back long runs</p>
         </div>
         
         <div class="marathon">
-            <input type="checkbox" class="checkbox" id="marrakech-marathon">
-            <label for="marrakech-marathon"><strong>Marathon de Marrakech</strong> - <a href="https://www.visitmorocco.com/en/travel/marrakech">Location</a></label>
+            <input type="checkbox" class="checkbox" onclick="checkMarathon(5)">
+            <strong>Marathon de Marrakech</strong> - <a href="https://www.visitmorocco.com/en/travel/marrakech">Location</a>
             <p>📅 Date: January 26, 2025</p>
             <p>🔹 Training: Speed work, form drills, recovery strategies</p>
         </div>
@@ -54,6 +88,7 @@
             <li>Carioca - Boosts lateral agility</li>
         </ul>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
