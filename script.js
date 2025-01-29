@@ -1,38 +1,52 @@
-// Initialize EmailJS with your User ID (found in EmailJS dashboard)
-(function() {
-  emailjs.init("user_YOUR_USER_ID"); // Replace with your EmailJS user ID
-})();
+// Check if the name and email are already saved in localStorage
+if (!localStorage.getItem("userName") || !localStorage.getItem("userEmail")) {
+    // If not, ask for the name and email
+    let userName = prompt("Enter your name:");
+    let userEmail = prompt("Enter your email address:");
 
-// Function to send email
-function sendEmail(to_name, from_name, message) {
-  const templateParams = {
-    to_name: to_name,
-    from_name: from_name,
-    message: message
-  };
+    // Save the name and email to localStorage
+    if (userName && userEmail) {
+        localStorage.setItem("userName", userName);
+        localStorage.setItem("userEmail", userEmail);
+    } else {
+        alert("Please provide both your name and email.");
+    }
+} else {
+    // Retrieve the saved name and email from localStorage
+    var userName = localStorage.getItem("userName");
+    var userEmail = localStorage.getItem("userEmail");
+}
 
-  emailjs.send("service_e40nti5", "template_f34h149", templateParams)
-    .then((response) => {
-      console.log("Email sent successfully:", response);
-    })
-    .catch((error) => {
-      console.log("Error sending email:", error);
+// Retrieve the saved checkbox states from localStorage
+document.querySelectorAll('.checkbox').forEach(function(checkbox, index) {
+    // Set the checkbox state based on localStorage
+    if (localStorage.getItem('checkboxState_' + index) === 'true') {
+        checkbox.checked = true;
+    }
+
+    // Save the checkbox state when it's clicked
+    checkbox.addEventListener('click', function() {
+        localStorage.setItem('checkboxState_' + index, checkbox.checked);
     });
-}
+});
 
-// Function to check when the marathon checkbox is clicked
-function checkMarathon(marathonId) {
-  const marathons = {
-    1: 'Fez Spiritual Marathon',
-    2: 'Marathon International de Rabat',
-    3: 'Marathon International de Casablanca',
-    4: 'Marathon des Sables',
-    5: 'Marathon de Marrakech'
-  };
-  
-  const marathonName = marathons[marathonId];
-  const userName = prompt("Enter your name:");
-  const message = `Hi ${userName},\n\nThe ${marathonName} is approaching! Please check your preparation and training.`;
+// Function to send email when checkbox is clicked
+document.querySelectorAll('.checkbox').forEach(function(checkbox) {
+    checkbox.addEventListener('click', function() {
+        let marathonName = this.parentElement.querySelector('strong').textContent;
+        let marathonDate = this.parentElement.querySelector('p').textContent;
 
-  sendEmail(userName, marathonName, message);
-}
+        // Send email using EmailJS
+        emailjs.send("gmail", "template_f34h149", {
+            to_name: userName,
+            from_name: "Marathon Morocco",
+            message: `You have a marathon coming up: ${marathonName}. Date: ${marathonDate}`,
+            to_email: userEmail
+        })
+        .then(function(response) {
+            alert("Email sent successfully!");
+        }, function(error) {
+            alert("Failed to send email: " + error.text);
+        });
+    });
+});
